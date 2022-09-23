@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+  vosk-server:
+    build:
+      context: vosk-server
+      dockerfile: Dockerfile.kaldi-en
+    ports:
+      - 2700:2700
+    container_name: vosk-server
+    restart: always
+
+  vosk-recasepunc:
+    build:
+      context: vosk-recasepunc
+      dockerfile: Dockerfile.vosk-recasepunc
+    ports:
+      - 8081:80
+    container_name: vosk-recasepunc
+    restart: always

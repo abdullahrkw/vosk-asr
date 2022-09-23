@@ -1,0 +1,17 @@
+FROM python:3.9-slim-buster
+WORKDIR /app
+
+RUN apt update && apt install -y git wget zip &&\
+    wget https://alphacephei.com/vosk/models/vosk-recasepunc-en-0.22.zip -O vosk-recasepunc-en-0.22.zip &&\
+    unzip vosk-recasepunc-en-0.22.zip &&\
+    apt remove -y zip wget
+
+COPY ./requirements.txt vosk-recasepunc-en-0.22/requirements.txt
+
+RUN cd vosk-recasepunc-en-0.22 && pip3 install -U pip && pip3 install -r requirements.txt
+
+COPY server.py vosk-recasepunc-en-0.22/server.py
+
+WORKDIR /app/vosk-recasepunc-en-0.22
+
+CMD ["python3", "server.py"]

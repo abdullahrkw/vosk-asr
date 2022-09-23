@@ -1,0 +1,7 @@
+git+https://github.com/benob/mosestokenizer.git
+fastapi[all]==0.85.0
+numpy==1.23.3
+regex==2022.9.13
+torch==1.12.1
+tqdm==4.64.1
+transformers==4.22.1
